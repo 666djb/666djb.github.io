@@ -1,0 +1,79 @@
+config wifi-device 'radio0'
+	option type 'mac80211'
+	option path 'platform/soc/a000000.wifi'
+	option band '2g'
+	option channel '1'
+	option cell_density '0'
+	option htmode 'HT40'
+	option country 'GB'
+	option beacon_int '300'
+
+config wifi-device 'radio1'
+	option type 'mac80211'
+	option path 'platform/soc/a800000.wifi'
+	option band '5g'
+	option channel '161'
+	option htmode 'VHT40'
+	option country 'GB'
+	option cell_density '0'
+
+config wifi-iface 'wifinet5'
+	option device 'radio0'
+	option mode 'ap'
+	option ssid 'myssid'
+	option encryption 'psk2'
+	option multicast_to_unicast_all '1'
+	option network 'lan'
+	option ieee80211k '1'
+	option wnm_sleep_mode '1'
+	option bss_transition '1'
+	option macfilter 'deny'
+	option disassoc_low_ack '0'
+
+config wifi-iface 'wifinet4'
+	option device 'radio1'
+	option mode 'ap'
+	option ssid 'myssid'
+	option encryption 'psk2'
+	option multicast_to_unicast_all '1'
+	option network 'lan'
+	option ieee80211k '1'
+	option wnm_sleep_mode '1'
+	option bss_transition '1'
+	option disassoc_low_ack '0'
+
+config wifi-station
+	option vid '99'
+	option key 'guestpassword'
+
+config wifi-station
+	option vid '200'
+	option key 'iotpassword'
+
+config wifi-station
+	option vid '300'
+	option key 'testpassword'
+
+config wifi-station
+	option vid '400'
+	option key 'homepassword'
+
+config wifi-vlan
+	option vid '99'
+	option network 'vlan99'
+	option name '99'
+
+config wifi-vlan
+	option vid '200'
+	option network 'vlan200'
+	option name '200'
+
+config wifi-vlan
+	option vid '300'
+	option network 'vlan300'
+	option name '300'
+
+config wifi-vlan
+	option vid '400'
+	option network 'vlan400'
+	option name '400'

@@ -1,0 +1,62 @@
+config interface 'loopback'
+	option device 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+
+config globals 'globals'
+	option ula_prefix 'fd88:ef6a:179b::/48'
+	option packet_steering '1'
+	option dhcp_default_duid '0004cca8df763149437088a5dc466c5afbbb'
+
+config device
+	option name 'br-lan'
+	option type 'bridge'
+	list ports 'lan'
+	list ports 'wan'
+	option bridge_empty '1'
+
+config interface 'lan'
+	option device 'br-lan.50'
+	option proto 'static'
+	option ipaddr '192.168.1.251'
+	option netmask '255.255.255.0'
+	option gateway '192.168.1.1'
+	list dns '192.168.1.1'
+	option delegate '0'
+
+config interface 'vlan200'
+	option proto 'none'
+	option device 'br-lan.200'
+
+config interface 'vlan300'
+	option proto 'none'
+	option device 'br-lan.300'
+
+config interface 'vlan400'
+	option proto 'none'
+	option device 'br-lan.400'
+
+config bridge-vlan
+	option device 'br-lan'
+	option vlan '50'
+	list ports 'lan'
+	list ports 'wan'
+
+config bridge-vlan
+	option device 'br-lan'
+	option vlan '200'
+	list ports 'lan:t'
+	list ports 'wan:t'
+
+config bridge-vlan
+	option device 'br-lan'
+	option vlan '300'
+	list ports 'lan:t'
+	list ports 'wan:t'
+
+config bridge-vlan
+	option device 'br-lan'
+	option vlan '400'
+	list ports 'lan:t'
+	list ports 'wan:t'
